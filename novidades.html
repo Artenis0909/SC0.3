@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novidades - Social Club Network</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .message {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 20px auto;
+			margin-top: 50px;
+        }
+
+        .message h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .message p {
+            font-size: 18px;
+            text-align: left;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #d32f2f;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            background-color: #b71c1c;
+        }
+		/* Estilo para a barra de navegação */
+        .navbar {
+            width: 100%;
+            background-color: #000;
+            overflow: hidden;
+            border-bottom: 2px solid #d32f2f; /* Linha vermelha abaixo da barra */
+            position: fixed; /* Fixa a barra de navegação no topo */
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Garante que a barra fique acima de outros elementos */
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #ffffff; /* Cor branca para as fontes */
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Coloca "Minha Conta" do lado direito */
+        .navbar a.account {
+            float: right;
+        }
+
+        .navbar a:hover {
+            background-color: #333;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="message">
+        <h1>Novidades - Minecraft Shaders No PS3 Quase completo</h1>
+        <p>O Minecraft shaders para PS3 e Xbox 360 esta quase completo.</p>
+        <p>Nossas fontes dizem que o projeto ja esta em quase pronto mas somente a versao beta.</p>
+        <p>com o vazamento de arquivos é possivel ver que o mod contara com uma vegetaçao mais viva, novos minerios, novos mobs, skybox realista, texturas repaginadas, novo bioma, mais de 20 skins novas, uma nova trilha sonora e outras adiçoes significatvas.</p>
+        <p>A equipe possivelmente removera a feature de reflexo da luz nas poças de agua de chuva na versao beta, mas ainda ha uma grande chance de haver isso na versao final. possivelmente a adiçao de efeitos de luz realista igual aos shaders de PC serao adicionaos pelo arquivo da Eboot.</p>
+        <p>A possivl data de entrega do projeto eesta marcada para outubro, junto com os outros projetos. entao entre no discord da King Mine Studios ainda hoje para se manter informado e nao perder nada.</p>
+        <a href="index.html" class="back-button">Voltar para a página principal</a>
+    </div>
+	<div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="javascript:void(0);" onclick="goToChats()">Chats</a> <!-- Função chamada ao clicar -->
+        <a href="jogos.html">Jogos</a>
+        <a href="minha_conta.html" class="account">Minha Conta</a> <!-- "Minha Conta" à direita -->
+		<a href="feed.html"> Feed</a>
+        <a href="novidades.html">Novidades</a>
+	
+		
+    </div>
+	
+	<div class="footer">
+        © 2024 Social Club Digital. Maximus produções
+    </div>
+</body>
+</html>

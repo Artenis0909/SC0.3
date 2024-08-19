@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogos - Social Club Network</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #000;
+            overflow: hidden;
+            border-bottom: 4px solid #d32f2f; /* Linha vermelha abaixo da barra */
+            position: fixed; /* Fixa a barra de navegação no topo */
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Garante que a barra fique acima de outros elementos */
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #ffffff; /* Cor branca para as fontes */
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Coloca "Minha Conta" do lado direito */
+        .navbar a.account {
+            float: right;
+        }
+
+        .navbar a:hover {
+            background-color: #333;
+            color: #ffffff;
+        }
+
+        .message {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px; /* Borda arredondada */
+            max-width: 600px;
+            min-width: 400px;
+            margin: 70px auto 20px auto; /* Margem superior e inferior para espaçamento */
+            float: left;
+            display: block;
+        }
+
+        .message h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .message p {
+            font-size: 18px;
+        }
+
+        .logo {
+            color: #d32f2f; 
+        }
+
+        .chat-area {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 20px;
+        }
+
+        .chat-area input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #d32f2f;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        .chat-area button {
+            padding: 10px 20px;
+            background-color: #d32f2f;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .chat-area button:hover {
+            background-color: #b32727;
+        }
+
+        .usuario1 {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 1px; /* Borda arredondada */
+            max-width: 350px;
+            min-width: 350px;
+            min-height: 250px;
+            margin: 20px;
+            display: flex;
+            align-items: flex-start;
+            text-align: left;
+            color: #e0e0e0;
+            position: relative; /* Adiciona contexto para posicionamento absoluto */
+			margin-top: 50px;
+        }
+
+        .usuario1 img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .usuario1 .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .usuario1 .user-info h2 {
+            margin: 0;
+            font-size: 15px;
+            font-style: italic;
+        }
+
+        .usuario1 .user-info p {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+        }
+
+        .usuario1 .more-options {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #e0e0e0;
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000; /* Preto sólido */
+            color: #ffffff; /* Cor do texto, se necessário */
+            text-align: center; /* Centraliza o texto no rodapé */
+            padding: 5px 0; /* Espaçamento interno */
+            z-index: 1000; /* Garante que o rodapé fique sobre outros elementos */
+            font-size: 12px; /* Tamanho do texto */
+            min-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegação -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="javascript:void(0);" onclick="goToChats()">Chats</a> <!-- Função chamada ao clicar -->
+        <a href="minha_conta.html" class="account">Minha Conta</a> <!-- "Minha Conta" à direita -->
+        <a href="feed.html">Feed</a>
+        <a href="novidades.html">Novidades</a>
+        <p class="logo"> Social Club </p>
+    </div>
+
+    <div class="message">
+        <div class="chat-area">
+            <input type="text" id="chat-input" name="mensagem" placeholder="Digite o que está pensando...">
+            <button type="submit">Enviar</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="usuario1">
+            <img src="https://via.placeholder.com/50" alt="Foto de Perfil">
+            <div class="user-info">
+                <h2>Usuario1</h2>
+                <p>Essa é uma frase aleatória.</p>
+            </div>
+            <div class="more-options">...</div> <!-- Três pontinhos -->
+        </div>
+        <div class="usuario1">
+            <img src="https://via.placeholder.com/50" alt="Foto de Perfil">
+            <div class="user-info">
+                <h2>tezfun2</h2>
+                <p>Outra frase aleatória.</p>
+            </div>
+            <div class="more-options">...</div> <!-- Três pontinhos -->
+        </div>
+        <!-- Novos usuários adicionados -->
+        <div class="usuario1">
+            <img src="https://via.placeholder.com/50" alt="Foto de Perfil">
+            <div class="user-info">
+                <h2>Usuario3</h2>
+                <p>Mais uma frase aleatória.</p>
+            </div>
+            <div class="more-options">...</div> <!-- Três pontinhos -->
+        </div>
+        <div class="usuario1">
+            <img src="https://via.placeholder.com/50" alt="Foto de Perfil">
+            <div class="user-info">
+                <h2>Usuario4</h2>
+                <p>Mais uma frase aleatória.</p>
+            </div>
+            <div class="more-options">...</div> <!-- Três pontinhos -->
+        </div>
+        <div class="usuario1">
+            <img src="https://via.placeholder.com/50" alt="Foto de Perfil">
+            <div class="user-info">
+                <h2>Usuario5</h2>
+                <p>Mais uma frase aleatória.</p>
+            </div>
+            <div class="more-options">...</div> <!-- Três pontinhos -->
+        </div>
+        <div class="usuario1">
+            <img src="https://via.placeholder.com/50" alt="Foto de Perfil">
+            <div class="user-info">
+                <h2>Usuario6</h2>
+                <p>Mais uma frase aleatória.</p>
+            </div>
+            <div class="more-options">...</div> <!-- Três pontinhos -->
+        </div>
+        <div class="usuario1">
+            <img src="https://via.placeholder.com/50" alt="Foto de Perfil">
+            <div class="user-info">
+                <h2>Usuario7</h2>
+                <p>Mais uma frase aleatória.</p>
+            </div>
+            <div class="more-options">...</div> <!-- Três pontinhos -->
+        </div>
+        <div class="usuario1">
+            <img src="https://via.placeholder.com/50" alt="Foto de Perfil">
+            <div class="user-info">
+                <h2>Usuario8</h2>
+                <p>Mais uma frase aleatória.</p>
+            </div>
+            <div class="more-options">...</div> <!-- Três pontinhos -->
+        </div>
+    </div>
+
+    <!-- Rodapé fixo -->
+    <div class="footer">
+     
+    </div>
+</body>
+</html>

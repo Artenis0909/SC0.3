@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Club Digital - Chats</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Barra de navegação */
+        .navbar {
+            width: 100%;
+            background-color: #000;
+            overflow: hidden;
+            border-bottom: 2px solid #d32f2f; /* Linha vermelha abaixo da barra */
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #ffffff; /* Cor branca para as fontes */
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Coloca "Minha Conta" do lado direito */
+        .navbar a.account {
+            float: right;
+        }
+
+        .navbar a:hover {
+            background-color: #333;
+            color: #ffffff;
+        }
+
+        /* Container de Nome Temporário */
+        .temp-name-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1c1c1c;
+            padding: 20px;
+        }
+
+        .temp-name-container input {
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #d32f2f;
+            border-radius: 5px;
+            background-color: #333;
+            color: #ffffff;
+            width: 250px;
+            margin-right: 10px;
+        }
+
+        .temp-name-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #d32f2f;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .temp-name-container button:hover {
+            background-color: #b32727;
+        }
+
+        /* Container do Chat */
+        .chat-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: row;
+            padding: 20px;
+            margin-top: 60px; /* Espaço para a barra de navegação */
+        }
+
+        /* Lista de servidores */
+        .server-list {
+            width: 250px;
+            background-color: #000;
+            padding: 10px;
+            border-radius: 8px;
+            margin-right: 20px;
+            border: 1px solid #d32f2f;
+        }
+
+        .server-list h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #d32f2f;
+        }
+
+        .server-list button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #d32f2f;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .server-list button:hover {
+            background-color: #b32727;
+        }
+
+        /* Área do chat */
+        .chat-area {
+            flex-grow: 1;
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #d32f2f;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #1c1c1c;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #d32f2f;
+        }
+
+        .chat-messages p {
+            background-color: #333333;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 5px 0;
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        .chat-input {
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        .chat-input button {
+            padding: 10px 20px;
+            background-color: #d32f2f;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .chat-input button:hover {
+            background-color: #b32727;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de navegação -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="chats.html">Chats</a>
+        <a href="jogos.html">Jogos</a>
+        <a href="minha_conta.html" class="account">Minha Conta</a> <!-- "Minha Conta" à direita -->
+        <a href="novidades.html">Novidades</a>
+    </div>
+
+    <!-- Container de Nome Temporário -->
+    <div id="temp-name-container" class="temp-name-container">
+        <input type="text" id="temp-name-input" placeholder="Insira um nome temporário">
+        <button onclick="handleNameInput()">OK</button>
+    </div>
+
+    <!-- Container do Chat -->
+    <div id="chat-container" class="chat-container" style="display: none;">
+        <!-- Lista de servidores -->
+        <div class="server-list">
+            <h2>Servidores</h2>
+            <button id="criarsv">Criar Servidor</button>
+            <button>Servidor 1</button>
+            <button>Servidor 2</button>
+        </div>
+
+        <!-- Área do chat -->
+        <div class="chat-area">
+            <div class="chat-messages" id="chat-messages">
+                <?php exibirMensagens(); ?> <!-- Exibe as mensagens salvas -->
+            </div>
+            <div class="chat-input">
+                <form action="chat.php" method="POST">
+                    <input type="hidden" id="nome" name="nome">
+                    <input type="text" id="chat-input" name="mensagem" placeholder="Digite sua mensagem...">
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+ 
+    <script>
+        let tempName = '';
+
+        function handleNameInput() {
+            const input = document.getElementById('temp-name-input');
+            if (input.value.trim() !== '') {
+                tempName = input.value.trim();
+                document.getElementById('temp-name-container').style.display = 'none';
+                document.getElementById('chat-container').style.display = 'flex';
+                document.getElementById('nome').value = tempName;
+            } else {
+                alert('Por favor, insira um nome temporário.');
+            }
+        }
+		
+
+
+        // Exibir o container de nome temporário ao carregar a página
+        window.onload = function() {
+            document.getElementById('temp-name-container').style.display = 'flex';
+        };
+    </script>
+</body>
+</html>
+
